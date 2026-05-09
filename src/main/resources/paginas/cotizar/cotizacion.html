@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        .barra {
+    height:6px;
+    background:#1b3b6f;
+    border-radius:4px;
+            margin: 20px 0;
+        }
+        .section-header {
+    background-color: #f2f2f2; /* Gris claro */
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    border-left: 5px solid #1a237e; /* Un detalle elegante en azul oscuro */
+}
+@page {
+    @bottom-center {
+        content: element(footer);
+    }
+}
+
+#footer {
+    position: running(footer);
+    width: 100%;
+    text-align: center;
+    border-top: 2px solid #1a237e;
+    padding-top: 10px;
+    font-size: 10px;
+    color: #666;
+}
+    </style>
+</head>
+<body>
+
+<div style="width:100%; background:#1b2a4a; color:white; padding:20px 30px;">
+
+    <table style="width:100%;">
+        <tr>
+            <!-- TEXTO -->
+            <td style="width:70%; vertical-align: middle;">
+                <h1 style="margin:0; font-size:28px; color:#ff7a00;">
+                    SEGUROS DGTIC
+                </h1>
+                <p style="margin:5px 0 0 0; font-size:14px;">
+                    Cotización de Seguro Automotriz
+                </p>
+            </td>
+
+            <!-- IMAGEN -->
+            <td style="width:30%; text-align:right;">
+                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70"
+                     style="width:80px; height:auto;" />
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+<div style="
+    width:100%;
+    height:10px;
+    background:#1b3b6f;
+    margin:15px 0;
+"></div>
+<input type="hidden" name="nombre" th:value="${form.nombre}"/>
+<input type="hidden" name="segundonombre" th:value="${form.segundonombre}"/>
+<input type="hidden" name="apellidoPaterno" th:value="${form.apellidoPaterno}"/>
+<input type="hidden" name="apellidoMaterno" th:value="${form.apellidoMaterno}"/>
+<input type="hidden" name="año" th:value="${anio}"/>
+<input type="hidden" name="marca" th:value="${marcaNombre}"/>
+<input type="hidden" name="modelo" th:value="${nombreModelo}"/>
+<input type="hidden" name="version" th:value="${nombreVersion}"/>
+<table style="width:100%;">
+    <tr>
+        <!-- IZQUIERDA: Usuario -->
+        <td style="width:50%; vertical-align: top;">
+            <h3 class="section-header">Datos del usuario</h3>
+            <p>
+                <strong>Nombre:</strong>
+                <span th:text="${form.nombre + ' ' + form.segundonombre + ' ' + form.apellidoPaterno + ' ' + form.apellidoMaterno}"></span>
+            </p>
+            <p><strong>Correo:</strong> <span th:text="${form.correo}"></span></p>
+            <p class="section-header"><strong>Cobertura:</strong><span th:text="${coberturaPdf}"></span></p>
+        </td>
+
+        <!-- DERECHA: Vehículo -->
+        <td style="width:50%; vertical-align: top;">
+            <h3 class="section-header">Datos del vehículo</h3>
+            <p><strong>Año:</strong> <span th:text="${anio}"></span></p>
+            <p><strong>Marca:</strong> <span th:text="${marcaNombre}"></span></p>
+            <p><strong>Modelo:</strong> <span th:text="${nombreModelo}"></span></p>
+            <p><strong>Versión:</strong> <span th:text="${nombreVersion}"></span></p>
+        </td>
+    </tr>
+</table>
+<div style="
+    width:100%;
+    height:10px;
+    background:#1b3b6f;
+    margin:15px 0;
+"></div>
+
+<table style="width:100%; border-collapse: collapse; margin-top:10px;">
+    <thead>
+    <tr>
+        <th class="section-header" style="text-align:left; padding:8px;">Cobertura</th>
+        <th class="section-header" style="text-align:left; padding:8px;">Suma Asegurada</th>
+        <th class="section-header" style="text-align:left; padding:8px;">Deducible</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td style="padding:6px;">Daños Materiales</td>
+        <td style="padding:6px;">Valor Comercial</td>
+        <td style="padding:6px;">5%</td>
+    </tr>
+    <tr>
+        <td style="padding:6px;">Robo Total</td>
+        <td style="padding:6px;">Valor Comercial</td>
+        <td style="padding:6px;">10%</td>
+    </tr>
+    <tr>
+        <td style="padding:6px;">Responsabilidad Civil</td>
+        <td style="padding:6px;">3,000,000</td>
+        <td style="padding:6px;">0 UMA</td>
+    </tr>
+    <tr>
+        <td style="padding:6px;">Extension de Responsabilidad Civil</td>
+        <td style="padding:6px;">Amparado</td>
+        <td style="padding:6px;">0 UMA</td>
+    </tr>
+    <tr>
+        <td style="padding:6px;">Gastos Médicos para Ocupantes y Conductos</td>
+        <td style="padding:6px;">1 000 000</td>
+        <td style="padding:6px;">No aplica</td>
+    </tr>
+    <tr>
+        <td style="padding:6px;">Asistencia Vial</td>
+        <td style="padding:6px;">Amparado</td>
+        <td style="padding:6px;">No aplica</td>
+    </tr>
+    <tr>
+        <td style="padding:6px;">Responsabilidad civil en el extranjero</td>
+        <td style="padding:6px;">150 000 USD</td>
+        <td style="padding:6px;">No aplica</td>
+    </tr>
+    </tbody>
+</table>
+
+<div style="
+    width:100%;
+    height:10px;
+    background:#1b3b6f;
+    margin:15px 0;
+"></div>
+<table style="width: 100%; margin-top: 20px; text-align: center;">
+    <thead>
+    <tr>
+        <th style="text-align:left; padding:8px;"></th>
+        <th style="color: #d32f2f;">ANUAL</th>
+        <th style="color: #d32f2f;">SEMESTRAL</th>
+        <th style="color: #d32f2f;">TRIMESTRAL</th>
+        <th style="color: #d32f2f;">MENSUAL</th>
+    </tr>
+    </thead>
+    <p></p>
+    <thead>
+    <tr>
+        <th style="text-align:left; padding:8px;"></th>
+        <th class="section-header">Un pago de</th>
+        <th class="section-header">Dos pagos de</th>
+        <th class="section-header">Cuatro pagos de</th>
+        <th class="section-header">Doce pagos de</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr>
+        <th style="text-align:left; padding:8px;"></th>
+
+        <td style="font-size: 18px; font-weight: bold;" th:text="${costos?.get(coberturaNombre)?.get('ANUAL')} ?: '0.00'"></td>
+
+        <td style="font-size: 18px; font-weight: bold;" th:text="${costos?.get(coberturaNombre)?.get('SEMESTRAL')} ?: '0.00'"></td>
+
+        <td style="font-size: 18px; font-weight: bold;" th:text="${costos?.get(coberturaNombre)?.get('TRIMESTRAL')} ?: '0.00'"></td>
+
+        <td style="font-size: 18px; font-weight: bold;" th:text="${costos?.get(coberturaNombre)?.get('MENSUAL')} ?: '0.00'"></td>
+    </tr>
+    </tbody>
+</table>
+
+<div style="width: 100%; text-align: center; margin-top: 40px; margin-bottom: 20px;">
+
+    <img th:src="${logoPath}" style="width: 20px;"/>
+</div>
+
+
+<hr style="border: 1px solid #1a237e; width: 60%; margin: 20px auto;" />
+
+
+<div id="footer">
+    <p>Seguros DGTIC | Av. Insurgentes Sur 123, CDMX | www.segurosdgtic.com.mx</p>
+    <p>Esta cotización tiene una vigencia de 30 días naturales.</p>
+</div>
+</body>
+
+</html>

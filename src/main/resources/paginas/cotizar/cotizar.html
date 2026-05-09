@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<h1 class="card-header-custom"><strong><p th:text="${costos}"></p></strong></h1>
+
+<head>
+    <meta charset="utf-8">
+    <title>SEGUROS DGTIC - Car Rental HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rubik&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-dark py-3 px-lg-5 d-none d-lg-block">
+        <div class="row">
+            <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid position-relative nav-bar p-0">
+        <div class="position-relative px-lg-5" style="z-index: 9;">
+            <nav class="navbar navbar-expand-lg bg-secondary navbar-dark py-3 py-lg-0 pl-3 pl-lg-5">
+                <a href="" class="navbar-brand">
+                    <h1 class="text-uppercase text-primary mb-1">Seguros DGTIC</h1>
+                </a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+                    <div class="navbar-nav ml-auto py-0">
+                        <a href="Inicio3" class="nav-item nav-link">Inicio</a>
+                        <a href="nosotros" class="nav-item nav-link">Nosotros</a>
+                        <a href="coberturas" class="nav-item nav-link">Coberturas</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Cotizar</a>
+                            <div class="dropdown-menu rounded-0 m-0">
+                                <a href="" class="dropdown-item active">Auto nacional</a>
+                                <a href="Legalizado" class="dropdown-item">Auto Legalizado</a>
+                                <a href="../../../../../../../Documents/car-rental-html-template/booking.html" class="dropdown-item">Motocicleta</a>
+                            </div>
+                        </div>
+
+                        </div>
+                    </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+
+    <!-- Search Start -->
+
+    <!-- Search End -->
+
+
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header">
+        <h1 class="display-3 text-uppercase text-white mb-3">Cotizador DGTIC</h1>
+    </div>
+    <!-- Page Header Start -->
+<body>
+<div class="container mt-4">
+    <form th:action="@{cotizar}" th:object="${form}" method="post">
+    <div class="card">
+        <div th:if="${error}" style="color:red;">
+            <p th:text="${error}"></p>
+        </div>
+        <!-- HEADER -->
+        <div class="card card-morado">
+            ASIGNACIÓN DE TARIFA
+        </div>
+        <div class="card-body">
+<!--            <form th:action="@{tarifa}"-->
+<!--                  th:object="${form}"-->
+<!--                  method="post">-->
+
+                <!-- FILA 1 -->
+                <div class="row mb-3">
+
+                    <!-- Código Postal -->
+                    <div class="col-md-2">
+                        <label>Código Postal:</label>
+                        <input type="text" th:field="*{codigopostal}" class="form-control" placeholder="00000">
+                    </div>
+
+                    <!-- Botón -->
+                    <div class="col-md-3 d-flex align-items-end">
+                        <button type="submit" class="btn btn-secondary w-100">
+                            Seleccionar colonia
+                        </button>
+                    </div>
+
+                    <!-- Colonias -->
+                    <div class="col-md-7">
+                        <label>Colonia:</label>
+                        <select class="form-control" th:field="*{colonia}">
+                            <option value="${null}">Seleccione una colonia</option>
+                            <option th:each="col : ${colonias}"
+                                    th:value="${col.id_colonia}"
+                                    th:text="${col.nombre}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <!-- FILA 2 -->
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label>Entidad Federativa:</label>
+                        <input type="text" th:field="*{estado}" class="form-control" readonly>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label>Ciudad o Población:</label>
+                        <input type="text" th:field="*{municipio}" class="form-control" readonly>
+                    </div>
+                </div>
+
+                <!-- TARIFA -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>Tarifa:</label>
+                        <div class="tarifa-text">CIUDAD DE MEXICO</div>
+                    </div>
+                </div>
+
+<!--            </form>-->
+        </div>
+    </div>
+
+        <div class="card">
+            <!-- HEADER -->
+            <div class="card card-morado">
+                INFORMACIÓN DEL VEHÍCULO
+            </div>
+            <div class="card-body">
+
+                <div class="row mb-3">
+
+                    <div class="col-md-3">
+                        <img class="logo-marca" th:src="${logoMarca != null}
+                     ? @{/imagenes/{img}(img=${logoMarca})}
+                     : @{/imagenes/unam-escudo-azul.webp}"
+                        style="max-height: 100px;">
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <label>Año:</label>
+                            <select class="form-control" th:field="*{anio}" onchange="if(this.value) this.form.submit()">
+                                <option th:value="${null}">Seleccione el año</option>
+                                <option th:each="an : ${anios}"
+                                        th:value="${an.id_anio}"
+                                        th:text="${an.anio}">
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label>Marca:</label>
+                            <select class="form-control" th:field="*{marca}"  onchange="if(this.value) this.form.submit()">
+                                <option  th:value="${null}">Seleccione la marca</option>
+                                <option th:each="ma : ${marcas}"
+                                        th:value="${ma.id_marca}"
+                                        th:text="${ma.marca}">
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label>Modelo:</label>
+                            <select class="form-control" th:field="*{modelo}"  onchange="if(this.value) this.form.submit()">
+                                <option th:value="${null}">Seleccione el modelo</option>
+                                <option th:each="mo : ${modelos}"
+                                        th:value="${mo.id_modelo}"
+                                        th:text="${mo.modelo}">
+                                </option>
+                            </select>
+                        </div>
+                </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label>Tipo:</label>
+                            <div class="tarifa-text">USO PARTICULAR</div>
+                        </div>
+
+                        <div class="col">
+                            <label>Versión:</label>
+                            <select class="form-control" th:field="*{version}" onchange="if(this.value) this.form.submit()">
+                                <option th:value="${null}">Seleccione la versión</option>
+                                <option th:each="ve : ${versiones}"
+                                        th:value="${ve.id_version}"
+                                        th:text="${ve.version}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+
+<!--                </form>-->
+            </div>
+        </div>
+        <div th:if="${form.version != null}">
+        <div class="card">
+            <div class="card card-morado">
+                INFORMACION DEL CLIENTE
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+
+                    <!-- Nombre -->
+                    <div class="col">
+                        <label>Nombre:</label>
+                        <input type="text" th:field="*{nombre}" class="form-control" oninput="this.value = this.value.toUpperCase()" placeholder="NOMBRE">
+                    </div>
+
+                    <!-- Segundo Nombre -->
+                    <div class="col">
+                        <label>Segundo Nombre:</label>
+                        <input type="text" th:field="*{segundonombre}" class="form-control" oninput="this.value = this.value.toUpperCase()" placeholder="SEGUNDO NOMBRE">
+                    </div>
+                </div>
+                    <div class="row mb-3">
+                    <!-- Apellidos-->
+                        <div class="col">
+                            <label>Apellido Paterno:</label>
+                            <input type="text" th:field="*{apellidoPaterno}" class="form-control" oninput="this.value = this.value.toUpperCase()" placeholder="APELLIDO PATERNO">
+                        </div>
+
+                        <div class="col">
+                            <label>Apellido Materno:</label>
+                            <input type="text" th:field="*{apellidoMaterno}" class="form-control" oninput="this.value = this.value.toUpperCase()" placeholder="APELLIDO MATERNO">
+                        </div>
+                    </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento:</label>
+                        <input type="date"
+                               id="fechaNacimiento"
+                               th:field="*{fechaNacimiento}"
+                               class="form-control" />
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label d-block">Genero:</label> <div class="d-flex align-items-center" style="height: 38px;"> <div class="form-check form-check-inline me-3">
+                        <input class="form-check-input" type="radio"
+                               th:field="*{genero}"
+                               id="genderMale"
+                               value="Masculino">
+                        <label class="form-check-label" for="genderMale">Masculino</label>
+                    </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio"
+                                   th:field="*{genero}"
+                                   id="genderFemale"
+                                   value="Femenino">
+                            <label class="form-check-label" for="genderFemale">Femenino</label>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+
+                <div class="col">
+                    <label>Número:</label>
+                    <input type="text" th:field="*{numero}" class="form-control">
+                </div>
+                    <div class="col">
+                        <label>Correo Electronico:</label>
+                        <input type="text" th:field="*{correo}" class="form-control">
+                    </div>
+
+                </div>
+                <div class="mt-3 text-end">
+                    <button type="submit" name="accion" value="cotizar" class="btn btn-primary">
+                        Cotizar
+                    </button>
+                </div>
+
+
+            </div>
+
+        </div>
+        </div>
+    </form>
+</div>
+
+</body>
+
+
+
+    <!-- Vendor Start -->
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="owl-carousel vendor-carousel">
+                <div class="bg-light p-4">
+                    <img src="../../../../../../../Documents/car-rental-html-template/img/vendor-1.png" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="../../../../../../../Documents/car-rental-html-template/img/vendor-2.png" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="../../../../../../../Documents/car-rental-html-template/img/vendor-3.png" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="../../../../../../../Documents/car-rental-html-template/img/vendor-4.png" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="../../../../../../../Documents/car-rental-html-template/img/vendor-5.png" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="../../../../../../../Documents/car-rental-html-template/img/vendor-6.png" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="../../../../../../../Documents/car-rental-html-template/img/vendor-7.png" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="../../../../../../../Documents/car-rental-html-template/img/vendor-8.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Vendor End -->
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-secondary py-5 px-sm-3 px-md-5" style="margin-top: 90px;">
+        <div class="row pt-5">
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h4 class="text-uppercase text-light mb-4">Ubícanos</h4>
+                <p class="mb-2"><i class="fa fa-map-marker-alt text-white mr-3"></i>Universidad Nacional Autónoma de México, Cto. Exterior s/n, C.U., Coyoacán, 04510 Ciudad de México, CDMX</p>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h4 class="text-uppercase text-light mb-4">Porque los mejores están con nosotros</h4>
+                <div class="row mx-n1">
+                    <div class="col-4 px-1 mb-2">
+                        <a href=""><img class="w-100" src="../../../../../../../Documents/car-rental-html-template/img/gallery-1.jpg" alt=""></a>
+                    </div>
+                    <div class="col-4 px-1 mb-2">
+                        <a href=""><img class="w-100" src="../../../../../../../Documents/car-rental-html-template/img/gallery-2.jpg" alt=""></a>
+                    </div>
+                    <div class="col-4 px-1 mb-2">
+                        <a href=""><img class="w-100" src="../../../../../../../Documents/car-rental-html-template/img/gallery-3.jpg" alt=""></a>
+                    </div>
+                    <div class="col-4 px-1 mb-2">
+                        <a href=""><img class="w-100" src="../../../../../../../Documents/car-rental-html-template/img/gallery-4.jpg" alt=""></a>
+                    </div>
+                    <div class="col-4 px-1 mb-2">
+                        <a href=""><img class="w-100" src="../../../../../../../Documents/car-rental-html-template/img/gallery-5.jpg" alt=""></a>
+                    </div>
+                    <div class="col-4 px-1 mb-2">
+                        <a href=""><img class="w-100" src="../../../../../../../Documents/car-rental-html-template/img/gallery-6.jpg" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-dark py-4 px-sm-3 px-md-5">
+        <p class="mb-2 text-center text-body">&copy; <a href="#">Seguros DGTIC</a>Todos los derechos reservados.</p>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../../../../../Documents/car-rental-html-template/lib/easing/easing.min.js"></script>
+    <script src="../../../../../../../Documents/car-rental-html-template/lib/waypoints/waypoints.min.js"></script>
+    <script src="../../../../../../../Documents/car-rental-html-template/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../../../../../../../Documents/car-rental-html-template/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="../../../../../../../Documents/car-rental-html-template/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="../../../../../../../Documents/car-rental-html-template/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="../../../../../../../Documents/car-rental-html-template/js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="es">
+<body>
+<head th:replace="~{plantillas/plantilla :: head}"></head>
+<h1>Colonias</h1>
+<div class="card-body">
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Colonia</th>
+        <th>Municipio</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="c : ${colonias}">
+        <td th:text="${c.id_colonia}"></td>
+        <td th:text="${c.nombre}"></td>
+        <td th:text="${c.municipio.nombre}"></td>
+        <td th:text="${c.municipio.estado.nombre}"></td>
+
+        <td>
+            <a th:href="@{/editarColonia/{id}(id=${c.id_colonia})}"
+               class="btn btn-warning btn-sm">
+                Editar
+            </a>
+            <a th:href="@{/colonia/eliminar/{id}(id=${c.id_colonia})}"
+               class="btn btn-danger btn-sm"
+               onclick="return confirm('¿Seguro que deseas eliminar esta colonia?')">
+                Eliminar
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</div>
+</body>
+</html>
