@@ -93,7 +93,7 @@ Navega a: http://localhost:8080
 Accede al cotizador digital y comienza a generar cotizaciones de seguros
 📁 Estructura del Proyecto
 Code
-### Arquitectura
+```text
 Cotizador-DIGITAL-DGTIC/
 ├── src/
 │   ├── main/
