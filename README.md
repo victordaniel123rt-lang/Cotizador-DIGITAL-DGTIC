@@ -93,6 +93,7 @@ Navega a: http://localhost:8080
 Accede al cotizador digital y comienza a generar cotizaciones de seguros
 📁 Estructura del Proyecto
 Code
+### Arquitectura
 Cotizador-DIGITAL-DGTIC/
 ├── src/
 │   ├── main/
@@ -126,6 +127,7 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
 🔧 Dependencias Principales de Spring Boot
 El proyecto incluye las siguientes dependencias clave:
 
+### ARCHIVO POM
 XML
 <!-- Spring Boot Starter Web -->
 <dependency>
@@ -156,6 +158,8 @@ XML
     <groupId>com.mysql</groupId>
     <artifactId>mysql-connector-java</artifactId>
 </dependency>
+
+
 📝 Próximos Pasos
 Configurar la base de datos según tu entorno
 Crear usuarios y roles en Spring Security
